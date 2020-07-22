@@ -77,7 +77,7 @@
         this.$message(
           '您进入了非法页面！'
         )
-        this.$router.push({ path: 'cart' })
+        this.$router.replace({ path: 'cart' })
       }
     },
     components: {

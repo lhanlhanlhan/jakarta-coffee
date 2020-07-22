@@ -242,12 +242,20 @@
       },
       updatePass () {
         // 扔给服务器处理更新个人资讯
-        MessageBox.confirm('是否确认更新密码？', {
+        MessageBox.confirm('确认更新密码？', {
           confirmButtonText: '是',
           cancelButtonText: '否',
           type: 'warning'
         }).then(() => {
           // 更新密码
+          this.passwordReq.name = this.name
+          this.$store.dispatch('user/updatePass', this.passwordReq).then(() => {
+            this.$message({
+              message: '密码已经更新完毕，您可能将在稍后被要求重新登入！',
+              type: 'success',
+              duration: 5 * 1000
+            })
+          }).catch(() => {})
         })
       },
       openEditing () {

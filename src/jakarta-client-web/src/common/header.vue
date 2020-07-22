@@ -66,8 +66,7 @@
                                       <router-link :to="'goodsDetails?productId='+item.item_id"
                                                    v-text="item.name"></router-link>
                                     </h4>
-                                    <p class="attrs"><span>白色</span>
-                                    </p> <h6><span class="price-icon">$</span><span
+                                    <h6><span class="price-icon">$</span><span
                                     class="price-num">{{item.price.toFixed(2)}}</span><span
                                     class="item-num">x {{item.item_count}}</span>
                                   </h6></div>
@@ -80,13 +79,14 @@
                         </ul>
                       </div>
                       <!--总件数-->
-                      <div class="nav-cart-total"><p><strong>{{totalNum}}</strong> item(s)</p> <h5>Total: <span
-                        class="price-icon">$</span><span
-                        class="price-num">{{ totalPrice.toFixed(2) }}</span></h5>
+                      <div class="nav-cart-total">
+                        <p>共 <strong>{{totalNum}}</strong> 件商品</p>
+                        <h5>总计：<span class="price-icon">$ </span><span class="price-num">{{ totalPrice.toFixed(2) }}</span></h5>
                         <h6>
                           <y-button classStyle="main-btn"
                                     style="height: 40px;width: 100%;margin: 0;color: #fff;font-size: 14px;line-height: 38px"
-                                    text="Open Cart" @btnClick="toCart"></y-button>
+                                    text="打开购物车" @btnClick="toCart">
+                          </y-button>
                         </h6>
                       </div>
                     </div>

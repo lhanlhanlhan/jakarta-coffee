@@ -1,7 +1,7 @@
 {
-  "name": "jakarta-client",
+  "name": "jakarta-mall",
   "version": "1.0.0",
-  "description": "Jakarta Client Web Pages",
+  "description": "Jakarta Client, A Vue.js project",
   "author": "Han Li <han@han-li.cn>",
   "private": true,
   "scripts": {

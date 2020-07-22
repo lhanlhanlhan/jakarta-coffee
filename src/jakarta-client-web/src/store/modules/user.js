@@ -87,10 +87,10 @@ const actions = {
   },
   // 用户修改个人密码
   updatePass ({ commit }, passInfo) {
-    const { old, newPass, name } = passInfo
+    const { old_pass, new_pass, name } = passInfo
     return new Promise((resolve, reject) => {
       updateInfo({
-        old_password: old, new_password: newPass, username: name
+        old_password: old_pass, new_password: new_pass, username: name
       }).then(() => {
         resolve()
       }).catch(error => {

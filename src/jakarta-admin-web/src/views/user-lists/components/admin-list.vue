@@ -226,22 +226,33 @@ export default {
     createData() {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
-          createAdmin({
-            username: this.temp.name,
-            password: this.temp.password,
-            email: this.temp.email,
-            telephone: this.temp.phone,
-            admin: true,
-            operator: this.currAdminUser,
-            key: this.temp.currPassword
-          }).then(() => {
-            this.list.unshift(this.temp)
-            this.dialogFormVisible = false
-            this.$notify({
-              title: 'Success',
-              message: 'Created Successfully',
-              type: 'success',
-              duration: 2000
+          this.$prompt('Please re-enter your password', '2-Factor Authentication', {
+            confirmButtonText: 'Confirm',
+            cancelButtonText: 'Cancel',
+            inputType: 'password'
+          }).then(({ value }) => {
+            createAdmin({
+              username: this.temp.name,
+              password: this.temp.password,
+              email: this.temp.email,
+              telephone: this.temp.phone,
+              admin: true,
+              operator: this.currAdminUser,
+              key: value
+            }).then(() => {
+              this.list.unshift(this.temp)
+              this.dialogFormVisible = false
+              this.$notify({
+                title: 'Success',
+                message: 'Created Successfully',
+                type: 'success',
+                duration: 2000
+              })
+            })
+          }).catch(() => {
+            this.$message({
+              type: 'info',
+              message: 'You cancelled the operation.'
             })
           })
         }

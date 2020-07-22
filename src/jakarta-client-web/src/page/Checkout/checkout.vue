@@ -63,9 +63,6 @@
                         <div class="name-table">
                           <a :title="item.name" target="_blank"
                              v-text="item.name"></a>
-                          <ul class="attribute">
-                            <li>白色</li>
-                          </ul>
                         </div>
                       </div>
                       <!--商品数量-->
@@ -88,7 +85,7 @@
                 <div class="shipping">
                   <div class="shipping-box" style="padding: 0 40px;">
                     <div class="shipping-total shipping-price"><h4
-                      class="highlight">应付总额：<em>￥{{ checkPrice.toFixed(2) }}</em>
+                      class="highlight">应付总额：<em>$ {{ checkPrice.toFixed(2) }}</em>
                     </h4>
                     </div>
                   </div>
