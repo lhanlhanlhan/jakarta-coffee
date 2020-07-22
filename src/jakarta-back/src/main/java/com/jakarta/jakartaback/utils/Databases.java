@@ -14,8 +14,11 @@ public class Databases {
     public static List<Map<String, Object>> select(String sql) {
         try {
             return dbInstance.queryForList(sql);
-        } catch(DataAccessException e) {
+        } catch (DataAccessException e) {
             System.err.println("Database Error: " + e.getMessage());
+            return null;
+        } catch (NullPointerException e) {
+            System.err.println("The " + (sql == null ? "SQL sentence" : "database") + " was nil in select");
             return null;
         }
     }
@@ -25,14 +28,21 @@ public class Databases {
         try {
             dbInstance.execute(sql);
             return true;
-        } catch(DataAccessException e) {
+        } catch (DataAccessException e) {
             System.err.println("Database Error: " + e.getMessage());
+            return false;
+        } catch (NullPointerException e) {
+            System.err.println("The " + (sql == null ? "SQL sentence" : "database") + " was nil.");
             return false;
         }
     }
 
     // 设置数据库对象（限制使用）
     public static void setDB(JdbcTemplate db) {
+        System.out.println("The JDBCTemplate was set");
+        if (db == null) {
+            throw new NullPointerException("the JDBCTemplate was null.");
+        }
         dbInstance = db;
     }
 }

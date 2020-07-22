@@ -12,7 +12,7 @@ public class Tokens {
     private static HttpServletRequest getRequest() {
         ServletRequestAttributes requestAttributes =
                 (ServletRequestAttributes) RequestContextHolder
-                .getRequestAttributes();
+                        .getRequestAttributes();
         return requestAttributes == null ? null : requestAttributes.getRequest();
     }
 

@@ -14,10 +14,6 @@ import com.jakarta.jakartaback.token.PassToken;
 import com.jakarta.jakartaback.user.Admin;
 import com.jakarta.jakartaback.user.Client;
 import com.jakarta.jakartaback.user.User;
-import com.jakarta.jakartaback.utils.Utils;
-import org.springframework.stereotype.Component;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -30,20 +26,20 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object handler) throws Exception {
-        // 仅供测试
-        ServletRequestAttributes requestAttributes =
-                (ServletRequestAttributes) RequestContextHolder
-                        .getRequestAttributes();
-        assert requestAttributes != null;
-        System.out.println(requestAttributes.getRequest().getRequestURI());
+//        // 仅供测试
+//        ServletRequestAttributes requestAttributes =
+//                (ServletRequestAttributes) RequestContextHolder
+//                        .getRequestAttributes();
+//        assert requestAttributes != null;
+//        System.out.println(requestAttributes.getRequest().getRequestURI());
 
         // 从 http 请求头中取出 token
         String token = httpServletRequest.getHeader("X-Token");
         // 如果不是映射到方法直接通过
-        if(!(handler instanceof HandlerMethod)){
+        if (!(handler instanceof HandlerMethod)) {
             return true;
         }
-        HandlerMethod handlerMethod = (HandlerMethod)handler;
+        HandlerMethod handlerMethod = (HandlerMethod) handler;
         Method method = handlerMethod.getMethod();
         // 检查是否有PassToken注释，有则跳过认证
         if (method.isAnnotationPresent(PassToken.class)) {
@@ -107,7 +103,6 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
                 // 验证user
                 Admin theUser = Admin.getUserByUsername(username);
                 checkTokenPassword(token, theUser);
-                System.out.println(5);
                 // 其他情况，允许登录！
                 return true;
             }
@@ -119,6 +114,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
     public void postHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, ModelAndView modelAndView) throws Exception {
 
     }
+
     @Override
     public void afterCompletion(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e) throws Exception {
 

@@ -1,5 +1,6 @@
 package com.jakarta.jakartaback.controllers;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.jakarta.jakartaback.login.LoginHandlers;
 import com.jakarta.jakartaback.login.LoginInfo;
@@ -13,6 +14,7 @@ import com.jakarta.jakartaback.user.Admin;
 import com.jakarta.jakartaback.user.Client;
 import com.jakarta.jakartaback.user.UpdateInfoRequest;
 import com.jakarta.jakartaback.user.UserHandlers;
+import com.jakarta.jakartaback.utils.Utils;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -171,5 +173,22 @@ public class UsersAPIControllers { // 掌管和用户相关的API
     @PostMapping("/admin/add-admin")
     public JSONObject addAdmin(@RequestBody RegisterInfo info) {
         return UserHandlers.addUser(info);
+    }
+
+    // TODO - 用户提取自己的地址接口
+    @CrossOrigin
+    @PassToken
+    @PostMapping("/client/get-my-addr")
+    public JSONObject getAddress() {
+        String userId = Tokens.getTokenUserId();
+
+        JSONArray addr = new JSONArray();
+        JSONObject defaultAddr = new JSONObject();
+        defaultAddr.put("receiver", "李涵");
+        defaultAddr.put("street", "香港半山區干德道36號慧明苑A-23/F");
+        defaultAddr.put("tel", "2577 3595");
+
+        addr.add(defaultAddr);
+        return Utils.succeededReturn(addr, "Query Succeeded.");
     }
 }

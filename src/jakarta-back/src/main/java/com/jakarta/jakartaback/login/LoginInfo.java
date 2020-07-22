@@ -1,6 +1,5 @@
 package com.jakarta.jakartaback.login;
 
-import com.alibaba.fastjson.annotation.JSONField;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

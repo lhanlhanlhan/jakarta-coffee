@@ -53,6 +53,7 @@ public class Admin implements User {
                 .sign(Algorithm.HMAC256(this.password));
     }
 
+
     @Override
     public boolean isAdmin() {
         return true;

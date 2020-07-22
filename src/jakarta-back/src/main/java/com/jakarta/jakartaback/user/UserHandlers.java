@@ -120,8 +120,6 @@ public class UserHandlers {
             return Utils.failedReturn(ExceptionType.INVALID_COMING, "Invalid coming message.");
         }
         if (request.isUpdatingPassword()) {
-            // test
-            System.out.println("想修改管理员密码");
             // 要修改密码！
             // 1. 找到对应用户
             Admin user = Admin.getUserByUsername(request.getUsername());
@@ -140,10 +138,7 @@ public class UserHandlers {
                 return Utils.failedReturn(ExceptionType.EXECUTE_FAILED, "Execute failed.");
             }
             return Utils.succeededReturn("Execute succeeded.");
-        }
-        else {
-            // test
-            System.out.println("想修改管理员信息");
+        } else {
             // 要修改其他信息！
             // 1. 找到对应用户
             Admin user = Admin.getUserByUsername(userId);
@@ -187,8 +182,7 @@ public class UserHandlers {
                 return Utils.failedReturn(ExceptionType.EXECUTE_FAILED, "Execute failed.");
             }
             return Utils.succeededReturn("Execute succeeded.");
-        }
-        else {
+        } else {
             // 要修改其他信息！
             // 1. 找到对应用户
             Client user = Client.getUserByUsername(userId);
@@ -248,7 +242,6 @@ public class UserHandlers {
         return Utils.succeededReturn("Execute succeeded.");
     }
 
-    // TODO - 增加一个用户，注意鉴定管理员的身份（如果是要增加管理员的话）！
     public static JSONObject addUser(RegisterInfo info) {
         // 1. 执行增加算法
         if (info.isAdmin()) {
@@ -286,7 +279,7 @@ public class UserHandlers {
 
     private static JSONObject fetchPersonalInfo(User user) {
         if (user == null) {
-             return Utils.failedReturn(ExceptionType.NO_SUCH_USER, "No such user.");
+            return Utils.failedReturn(ExceptionType.NO_SUCH_USER, "No such user.");
         }
         HashMap<String, String> dict = new HashMap<>();
         dict.put("username", user.getUsername());
@@ -295,4 +288,6 @@ public class UserHandlers {
 
         return Utils.succeededReturn(dict);
     }
+
+
 }

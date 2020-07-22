@@ -18,6 +18,7 @@ public enum ExceptionType {
     EXECUTE_FAILED(50002);
 
     public final int code;
+
     ExceptionType(int c) {
         code = c;
     }

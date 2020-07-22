@@ -52,6 +52,7 @@ public class RegisterInfo {
     public String getEmail() {
         return email;
     }
+
     public String getTelephone() {
         return telephone;
     }

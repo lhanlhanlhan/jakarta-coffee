@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.jakarta</groupId>
     <artifactId>jakarta-back</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>jakarta-back</name>
     <description>Jakarta project for Spring Boot</description>
 
@@ -70,6 +70,8 @@
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
     </dependencies>
+
+    <packaging>jar</packaging>
 
     <build>
         <plugins>

@@ -1,14 +1,13 @@
 package com.jakarta.jakartaback.utils;
 
 import com.alibaba.fastjson.JSONObject;
-import com.jakarta.jakartaback.JakartaBackApplication;
 import com.jakarta.jakartaback.exceptions.ExceptionType;
 import com.jakarta.jakartaback.exceptions.ResultCode;
-import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 public class Utils {
 
@@ -62,5 +61,18 @@ public class Utils {
         jsonObject.put("exception", exception.code);
         jsonObject.put("message", message);
         return jsonObject;
+    }
+
+    // 生成一个的ID
+    private static final String basicStr = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+    public static String genNewID(int length) {
+        char[] charset = basicStr.toCharArray();
+        Random random = new Random();
+        char[] id = new char[length + 1];
+        for (int i = 0; i < length; i++) {
+            id[i] = charset[random.nextInt(62)];
+        }
+        return String.valueOf(id, 0, length);
     }
 }

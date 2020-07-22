@@ -24,7 +24,9 @@ public class ExceptionsHandler {
     public Object handleException(Exception e) {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("code", ResultCode.INTERNAL_SERVER_ERROR.code);
-        jsonObject.put("message", "Internal server error.");
+        jsonObject.put("message", "Internal server error, with exception: " + e.toString());
+
+        e.printStackTrace();
         return jsonObject;
     }
 }
